@@ -393,7 +393,7 @@
                     <form class="waitlist-form">
                         <div class="row g-3 justify-content-center">
                             <div class="col-md-6 col-lg-4">
-                                <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                                <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <button type="submit" class="btn btn-dark btn-lg w-100">
@@ -436,21 +436,21 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <form class="contact-form">
+                            <form class="contact-form" onsubmit="handleContactSubmission(event)">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" required>
+                                    <input type="text" class="form-control" id="name" name="name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                  <label for="message" class="form-label">Message</label>
+                                     <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-orange">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                   <i class="fas fa-paper-plane me-2"></i>Send Message
                                 </button>
                             </form>
                         </div>

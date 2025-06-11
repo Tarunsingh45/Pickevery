@@ -73,33 +73,43 @@ function handleWaitlistSubmission(e) {
     const formData = new FormData(e.target);
     const email = formData.get('email');
 
-    if (validateEmail(email)) {
-        fetch('/waitlist', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                showNotification(data.message, 'success');
-                e.target.reset();
-            } else {
-                showNotification(data.message || 'Failed to join waitlist.', 'error');
-            }
-        })
-        .catch(() => {
-            showNotification('An error occurred while joining the waitlist.', 'error');
-        });
-    } else {
+    if (!email || !validateEmail(email)) {
         showNotification('Please enter a valid email address.', 'error');
+        return;
     }
+
+    fetch('/waitlist', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            showNotification(data.message, 'success');
+            e.target.reset();
+        } else {
+            showNotification(data.message || 'Failed to join waitlist.', 'error');
+        }
+    })
+    .catch(() => {
+        showNotification('An error occurred while joining the waitlist.', 'error');
+    });
 }
+
 
 
 // Handle contact form submission
 function handleContactSubmission(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    if (!name || !validateEmail(email) || !message) {
+        showNotification('Please fill in all fields with valid information.', 'error');
+        return;
+    }
 
     fetch('/contact', {
         method: 'POST',
@@ -118,6 +128,7 @@ function handleContactSubmission(e) {
         showNotification('An error occurred while sending your message.', 'error');
     });
 }
+
 
 
 // Email validation
