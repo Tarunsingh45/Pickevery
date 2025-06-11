@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickevery - Where Travel Meets Purpose</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="{{ url_for('static', filename='images/pickevery-logo.png') }}?v=2" alt="Pickevery Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#problem">The Problem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solution">Our Solution</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-orange text-white px-4" href="#waitlist">Join Waitlist</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="hero-title mb-4">
+                        <span class="text-orange">Deliver Goods.</span><br>
+                        <span class="text-orange">Share Rides.</span><br>
+                        <span class="text-dark">Empower Villages.</span>
+                    </h1>
+                    <p class="hero-subtitle mb-4">
+                        Where Travel Meets Purpose
+                    </p>
+                    <p class="lead mb-5">
+                        Connecting travelers heading from cities to rural areas with villagers who need essential goods or shared rides. Turn your journey into a community-powered solution.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#waitlist" class="btn btn-orange btn-lg me-3 mb-3">
+                            <i class="fas fa-bell me-2"></i>Join the Waitlist
+                        </a>
+                        <a href="#solution" class="btn btn-outline-dark btn-lg mb-3">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <div class="phone-mockup">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <div class="app-preview">
+                                        <div class="app-header bg-orange text-white p-3 text-center">
+                                            <h6 class="mb-0">Pickevery</h6>
+                                            <small>Coming Soon</small>
+                                        </div>
+                                        <div class="app-content p-4">
+                                            <div class="feature-preview mb-3">
+                                                <i class="fas fa-map-marker-alt text-orange me-2"></i>
+                                                <span>Find nearby requests</span>
+                                            </div>
+                                            <div class="feature-preview mb-3">
+                                                <i class="fas fa-handshake text-orange me-2"></i>
+                                                <span>Connect with travelers</span>
+                                            </div>
+                                            <div class="feature-preview">
+                                                <i class="fas fa-shield-alt text-orange me-2"></i>
+                                                <span>Verified community</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title mb-5">Why Rural Communities Are Disconnected</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="problem-card text-center">
+                        <div class="problem-icon mb-3">
+                            <i class="fas fa-clock text-orange"></i>
+                        </div>
+                        <h5>Delayed Essentials</h5>
+                        <p>Medicines, books, and groceries arrive late or not at all in rural areas.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="problem-card text-center">
+                        <div class="problem-icon mb-3">
+                            <i class="fas fa-money-bill-wave text-orange"></i>
+                        </div>
+                        <h5>High Travel Costs</h5>
+                        <p>Villagers spend significant money traveling to towns for basic needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="problem-card text-center">
+                        <div class="problem-icon mb-3">
+                            <i class="fas fa-truck text-orange"></i>
+                        </div>
+                        <h5>No Delivery System</h5>
+                        <p>Traditional delivery services don't reach remote rural areas.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="problem-card text-center">
+                        <div class="problem-icon mb-3">
+                            <i class="fas fa-route text-orange"></i>
+                        </div>
+                        <h5>Missed Opportunities</h5>
+                        <p>Many travelers pass through villages daily but can't help due to lack of coordination.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title mb-3">How PickEvery Works</h2>
+                    <p class="lead mb-5">A simple 3-step process that connects rural needs with urban travelers</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="solution-step text-center">
+                        <div class="step-number">1</div>
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-mobile-alt text-orange"></i>
+                        </div>
+                        <h4>Villager Requests</h4>
+                        <p>Rural community members submit requests for essential goods or rides through our simple app interface.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="solution-step text-center">
+                        <div class="step-number">2</div>
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-search text-orange"></i>
+                        </div>
+                        <h4>Traveler Matches</h4>
+                        <p>Verified travelers heading to rural areas see matching requests along their route and choose to help.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="solution-step text-center">
+                        <div class="step-number">3</div>
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-check-circle text-orange"></i>
+                        </div>
+                        <h4>Mission Complete</h4>
+                        <p>Traveler delivers goods or provides ride, earns incentives, and creates positive community impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title mb-5">Platform Features</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Verified Travelers</h5>
+                        <p>All travelers go through KYC verification ensuring a trusted and secure network for everyone.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h5>Dual Utility</h5>
+                        <p>Platform supports both goods delivery and ride-sharing to maximize community impact.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h5>Low Cost, High Impact</h5>
+                        <p>Affordable solutions for villagers while creating meaningful earning opportunities for travelers.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5>Rural-Friendly Design</h5>
+                        <p>Simple, intuitive app design optimized for users with varying levels of smartphone experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h5>Traveler Incentives</h5>
+                        <p>Earn rewards for helping communities while contributing to social impact and rural development.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h5>Community Focused</h5>
+                        <p>Built with purpose to strengthen connections between urban and rural communities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Preview Section -->
+    <section id="app-preview" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-4">App Preview</h2>
+                    <p class="lead mb-4">Get a sneak peek at our mobile platform currently in MVP stage and testing in selected areas.</p>
+                    <div class="preview-features">
+                        <div class="preview-feature mb-3">
+                            <i class="fas fa-check text-orange me-3"></i>
+                            <span>Intuitive request submission</span>
+                        </div>
+                        <div class="preview-feature mb-3">
+                            <i class="fas fa-check text-orange me-3"></i>
+                            <span>Real-time traveler matching</span>
+                        </div>
+                        <div class="preview-feature mb-3">
+                            <i class="fas fa-check text-orange me-3"></i>
+                            <span>Secure payment integration</span>
+                        </div>
+                        <div class="preview-feature mb-4">
+                            <i class="fas fa-check text-orange me-3"></i>
+                            <span>Community feedback system</span>
+                        </div>
+                    </div>
+                    <p class="text-muted">Currently in MVP stage and testing in selected areas. Join our waitlist to be the first to know when we launch in your area.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="app-screenshots">
+                        <div class="screenshot-placeholder">
+                            <div class="phone-mockup-large">
+                                <div class="phone-frame-large">
+                                    <div class="phone-screen-large">
+                                        <div class="mock-app">
+                                            <div class="mock-header bg-orange text-white p-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-0">Pickevery</h6>
+                                                    <i class="fas fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="mock-content p-3">
+                                                <div class="mock-request-card mb-3">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="fas fa-pills text-orange me-2"></i>
+                                                        <strong>Medicine Request</strong>
+                                                    </div>
+                                                    <p class="small text-muted mb-2">Village Kamand → Mandi</p>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span class="small">₹50 reward</span>
+                                                        <span class="badge bg-success">Available</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mock-request-card">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <i class="fas fa-car text-orange me-2"></i>
+                                                        <strong>Ride Share</strong>
+                                                    </div>
+                                                    <p class="small text-muted mb-2">Dharamshala → Palampur</p>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span class="small">₹100 reward</span>
+                                                        <span class="badge bg-warning">In Progress</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title text-center mb-5">About Us</h2>
+                    <div class="about-content">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <h4 class="mb-3">Founded on Purpose</h4>
+                                <p class="mb-4">
+                                    Pickevery was founded in early 2025 by two passionate co-founders who recognized the deep gap in rural access and the untapped potential of everyday travel.
+                                </p>
+                                <p class="mb-4">
+                                    We believe that technology should bridge divides, not create them. Our platform turns ordinary journeys into extraordinary opportunities for community support and rural empowerment.
+                                </p>
+                                <h5 class="text-orange mb-3">Why PickEvery is Different</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>No need for delivery fleets or warehouses</li>
+                                    <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Built for underserved areas (rural-first approach)</li>
+                                    <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Micro-earning opportunities for travelers</li>
+                                    <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Community and impact-focused mission</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mission-card">
+                                    <div class="mission-icon text-center mb-3">
+                                        <i class="fas fa-bullseye text-orange"></i>
+                                    </div>
+                                    <h5 class="text-center mb-3">Our Mission</h5>
+                                    <p class="text-center">
+                                        To create a sustainable, community-driven ecosystem where every journey has the potential to make a positive impact on rural communities across India.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="waitlist" class="py-5 bg-orange text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">Be a Traveler. Be the Connection. Be the Change.</h2>
+                    <p class="lead mb-5">Join thousands who are already signed up to be part of this purpose-driven movement.</p>
+                    <form class="waitlist-form">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-md-6 col-lg-4">
+                                <input type="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <button type="submit" class="btn btn-dark btn-lg w-100">
+                                    <i class="fas fa-paper-plane me-2"></i>Join Waitlist
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="mt-3 text-light">
+                        <small>Be the first to know when Pickevery launches in your area.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title text-center mb-5">Get in Touch</h2>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="contact-info">
+                                <h5 class="mb-4">Contact Information</h5>
+                                <div class="contact-item mb-3">
+                                    <i class="fas fa-envelope text-orange me-3"></i>
+                                    <span>pickevery.official@gmail.com</span>
+                                </div>
+                                <div class="social-links mt-4">
+                                    <h6 class="mb-3">Follow Us</h6>
+                                    <a href="https://www.instagram.com/pickevery.official/" class="social-link me-3">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/company/pickevery" class="social-link me-3">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="contact-form">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-orange">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <svg width="30" height="30" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="me-2">
+                            <polygon points="20,70 50,20 80,70 50,60" fill="#FF8C00" stroke="#FFF" stroke-width="2"/>
+                            <circle cx="80" cy="25" r="15" fill="#FF8C00"/>
+                        </svg>
+                        <span>&copy; 2025 Pickevery. All rights reserved.</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <span class="text-muted">Where Travel Meets Purpose</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

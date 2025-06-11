@@ -1,0 +1,129 @@
+PickEvery is a purpose-driven, mobile-based platform that connects travelers heading from cities to rural areas with villagers who need essential goods or shared rides.
+
+🔍 The Problem
+Villagers often cannot access basic essentials like medicines, books, groceries, or transportation on time.
+
+Delivery apps don’t reach rural areas, and public transport is limited or unreliable.
+
+People have to travel long distances to nearby cities, wasting time and money.
+
+💡 Your Solution – PickEvery
+PickEvery leverages travelers who are already going to rural areas:
+
+Villagers submit requests for goods or ride-sharing in the app.
+
+Travelers see those requests if they match their route.
+
+Travelers accept, fulfill the request, and get rewarded with a small incentive.
+
+All travelers are KYC verified, ensuring a trusted and secure network.
+
+In short:
+
+You’re building a bridge between urban movement and rural needs — turning everyday travel into a community-powered delivery and transport solution.
+
+🧱 What Should Be There on the Website (Complete Breakdown)
+Here’s what your website should include to fully communicate your idea, impact, and app:
+
+🟦 1. Hero Section (Top of the Website)
+Logo
+
+Tagline: Where Travel Meets Purpose
+
+Short headline: Deliver Goods. Share Rides. Empower Villages.
+
+CTA Button: Join the Waitlist or App Coming Soon
+
+🟨 2. The Problem
+Title: Why Rural Communities Are Disconnected
+Content:
+
+Essentials arrive late or not at all.
+
+High costs to travel to towns for basic needs.
+
+No structured delivery system in rural areas.
+
+Missed opportunity: many travelers pass through villages every day.
+
+Use icons or illustrations for visual clarity.
+
+🟩 3. Our Solution (How PickEvery Works)
+Use a simple 3-step process:
+
+Villager Requests – Essential goods or a ride
+
+Traveler Matches – Sees and accepts the request
+
+Delivery or Ride Happens – Traveler completes task and earns incentive
+
+Can be done using cards or step visuals.
+
+🟪 4. Features of the Platform
+Use a grid or icon layout:
+
+🔐 Verified Travelers (KYC)
+
+📦 Dual Utility: Deliver or Share Rides
+
+🚀 Low Cost, High Impact
+
+📲 Simple, Rural-Friendly App Design
+
+💰 Traveler Incentives
+
+🟧 5. App Preview (Sneak Peek)
+Show app screenshots (you already have some)
+
+Optional link to Google Drive folder for full demo
+
+Add a short note: “Currently in MVP stage and testing in selected areas.”
+
+🟥 6. About Us Section
+Who you are: Two co-founders, started from IIT Mandi
+
+Why you're building it: Realized the deep gap in rural access and the untapped potential of everyday travel
+
+Founded in early 2025
+
+🟫 7. Why PickEvery is Different
+Highlight:
+
+No need for delivery fleets or warehouses
+
+Built for underserved areas (rural-first)
+
+Micro-earning opportunity for travelers
+
+Community and impact focused
+
+📣 8. Call to Action (Repeat at Bottom)
+Be a Traveler. Be the Connection. Be the Change.
+Button: Get Early Access / Join the Waitlist
+
+📬 9. Contact Section
+Email: pickevery@gmail.com
+
+Social icons: Instagram | LinkedIn | WhatsApp
+
+Optional: Simple contact form
+
+🎨 Suggested Website Design Theme (Based on Logo)
+Element	Style
+Primary Color	Blue (#1E4AE9) – Trust & Clarity
+Accent Color	Yellow (#F6C700) – Energy & Purpose
+Font	Inter / Poppins / Roboto
+Background	White or very light gray
+Icons	Rounded, friendly style
+Feel	Clean, modern, community-driven
+
+✅ Summary
+Your website should:
+
+Educate visitors on the problem
+
+Show how your solution works
+
+Create trust through verified features
+
+Encourage action through clear calls to join or follow
