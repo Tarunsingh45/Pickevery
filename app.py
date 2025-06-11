@@ -47,8 +47,9 @@ def handle_contact():
     try:
         save_contact_to_airtable(name, email, message)
     except Exception as e:
-        print("Airtable Error:", e)
+        print("Airtable Error:", e)  # 👈 Add this if it’s not already here
         return jsonify({'status': 'error', 'message': 'Failed to save to Airtable.'}), 500
+
 
     return jsonify({'status': 'success', 'message': 'Message received!'})
 
