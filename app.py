@@ -1,5 +1,29 @@
 import os
 from flask import Flask, render_template, request, jsonify
+from pyairtable import Table
+from datetime import datetime
+
+AIRTABLE_API_KEY = os.environ.get('AIRTABLE_API_KEY')
+AIRTABLE_BASE_ID = 'app6yjy1Xxc0ChJkR'  # Replace this
+CONTACT_TABLE = 'contacts'              # Name of your contact table
+WAITLIST_TABLE = 'waiting list'             # Name of your waitlist table
+
+def save_contact_to_airtable(name, email, message):
+    table = Table(AIRTABLE_API_KEY, AIRTABLE_BASE_ID, CONTACT_TABLE)
+    table.create({
+        "Name": name,
+        "Email": email,
+        "Message": message,
+        "Submitted At": datetime.utcnow().isoformat()
+    })
+
+def save_waitlist_to_airtable(email):
+    table = Table(AIRTABLE_API_KEY, AIRTABLE_BASE_ID, WAITLIST_TABLE)
+    table.create({
+        "Email": email,
+        "Submitted At": datetime.utcnow().isoformat()
+    })
+
 
 # Create the app
 app = Flask(__name__)
@@ -21,12 +45,13 @@ def handle_contact():
         return jsonify({'status': 'error', 'message': 'All fields are required.'}), 400
 
     try:
-        with open('messages.txt', 'a', encoding='utf-8') as f:
-            f.write(f"Name: {name}\nEmail: {email}\nMessage: {message}\n---\n")
-    except Exception:
-        return jsonify({'status': 'error', 'message': 'Failed to save message.'}), 500
+        save_contact_to_airtable(name, email, message)
+    except Exception as e:
+        print("Airtable Error:", e)
+        return jsonify({'status': 'error', 'message': 'Failed to save to Airtable.'}), 500
 
-    return jsonify({'status': 'success', 'message': 'Thank you for your message! We\'ll get back to you soon.'})
+    return jsonify({'status': 'success', 'message': 'Message received!'})
+
 
 # Waitlist form handler
 @app.route('/waitlist', methods=['POST'])
@@ -37,13 +62,18 @@ def handle_waitlist():
         return jsonify({'status': 'error', 'message': 'Email is required.'}), 400
 
     try:
-        with open('waitlist.txt', 'a', encoding='utf-8') as f:
-            f.write(f"{email}\n")
-    except Exception:
-        return jsonify({'status': 'error', 'message': 'Failed to save email.'}), 500
+        save_waitlist_to_airtable(email)
+    except Exception as e:
+        print("Airtable Error:", e)
+        return jsonify({'status': 'error', 'message': 'Failed to save to Airtable.'}), 500
 
-    return jsonify({'status': 'success', 'message': 'Thank you for joining our waitlist!'})
+    return jsonify({'status': 'success', 'message': 'You’ve been added to the waitlist!'})
 
 # Run locally
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+
+
+
+
