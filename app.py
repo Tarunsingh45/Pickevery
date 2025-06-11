@@ -14,14 +14,12 @@ def save_contact_to_airtable(name, email, message):
         "Name": name,
         "Email": email,
         "Message": message,
-        "Submitted At": datetime.utcnow().isoformat()
     })
 
 def save_waitlist_to_airtable(email):
     table = Table(AIRTABLE_API_KEY, AIRTABLE_BASE_ID, WAITLIST_TABLE)
     table.create({
         "Email": email,
-        "Submitted At": datetime.utcnow().isoformat()
     })
 
 
