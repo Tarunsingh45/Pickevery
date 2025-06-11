@@ -70,33 +70,55 @@ function initFormHandling() {
 // Handle waitlist form submission
 function handleWaitlistSubmission(e) {
     e.preventDefault();
-    const email = e.target.querySelector('input[type="email"]').value;
-    
+    const formData = new FormData(e.target);
+    const email = formData.get('email');
+
     if (validateEmail(email)) {
-        // Show success message
-        showNotification('Thank you for joining our waitlist! We\'ll notify you when Pickevery launches in your area.', 'success');
-        e.target.reset();
+        fetch('/waitlist', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showNotification(data.message, 'success');
+                e.target.reset();
+            } else {
+                showNotification(data.message || 'Failed to join waitlist.', 'error');
+            }
+        })
+        .catch(() => {
+            showNotification('An error occurred while joining the waitlist.', 'error');
+        });
     } else {
         showNotification('Please enter a valid email address.', 'error');
     }
 }
 
+
 // Handle contact form submission
 function handleContactSubmission(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const name = formData.get('name') || e.target.querySelector('#name').value;
-    const email = formData.get('email') || e.target.querySelector('#email').value;
-    const message = formData.get('message') || e.target.querySelector('#message').value;
-    
-    if (name && validateEmail(email) && message) {
-        // Show success message
-        showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-        e.target.reset();
-    } else {
-        showNotification('Please fill in all fields with valid information.', 'error');
-    }
+
+    fetch('/contact', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            showNotification(data.message, 'success');
+            e.target.reset();
+        } else {
+            showNotification(data.message || 'Failed to submit contact form.', 'error');
+        }
+    })
+    .catch(() => {
+        showNotification('An error occurred while sending your message.', 'error');
+    });
 }
+
 
 // Email validation
 function validateEmail(email) {
