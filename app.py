@@ -68,6 +68,22 @@ def handle_waitlist():
 
     return jsonify({'status': 'success', 'message': 'You’ve been added to the waitlist!'})
 
+
+# Privacy Policy page
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+# Terms & Conditions page
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+# Refund & Cancellation Policy page
+@app.route('/refund')
+def refund():
+    return render_template('refund.html')
+
 # Run locally
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

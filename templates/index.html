@@ -484,5 +484,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <footer class="footer">
+        <div class="container text-center">
+        <p>&copy; <span id="year"></span> Pickevery. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="{{ url_for('privacy') }}">Privacy Policy</a> |
+                <a href="{{ url_for('terms') }}">Terms & Conditions</a> |
+                <a href="{{ url_for('refund') }}">Refund & Cancellation Policy</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+      // Set current year automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
 </body>
 </html>
