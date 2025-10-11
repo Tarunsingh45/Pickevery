@@ -4,38 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickevery - Where Travel Meets Purpose</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
-        .btn-orange {
-            background-color: #FF8C00;
-            border: none;
+        body { background: #f8fafb; }
+        .btn-orange { background: #FF8C00; border: none; color: #fff; }
+        .btn-orange:hover, .btn-orange:focus { background: #e57b00; color: #fff;}
+        .text-orange { color: #FF8C00 !important; }
+        .download-banner-main {
+            background: linear-gradient(95deg, #FF8C00 70%, #FFD580 100%);
+            padding: 2.3rem 1rem;
+            border-radius: 2.1rem;
+            margin-top: -2.2rem;
+            margin-bottom: 2.6rem;
+            max-width: 1120px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 38px #FF910040;
+            display: flex; align-items: center; flex-wrap: wrap; gap:2rem; justify-content: space-between;
         }
-        .btn-orange:hover, .btn-orange:focus {
-            background-color: #e57b00;
+        .download-banner-main h2, .download-banner-main p { color: #fff !important; margin: 0;}
+        .download-banner-badges a img {
+            height: 58px;
+            margin-right: 12px;
+            margin-bottom: 0;
+            transition: transform 0.15s;
         }
-        .text-orange {
-            color: #FF8C00 !important;
+        .download-banner-badges a img:last-child { margin-right: 0; }
+        .download-banner-badges a img:hover { transform: scale(1.10);}
+        .app-download-row a img { height: 54px; margin-right: 12px; }
+        .app-download-row a img:last-child { margin-right: 0; }
+        .app-download-row a img:hover { transform: scale(1.07); }
+        @media (max-width:900px) {
+            .download-banner-main { flex-direction: column; text-align: center; padding:1.39rem 0.89rem; }
+            .download-banner-badges a img { height:45px !important;}
         }
-        .app-download-buttons a img {
-            height: 55px;
-            margin-right: 10px;
-            margin-bottom: 6px;
-            transition: transform 0.13s;
+        @media (max-width:600px) {
+            .download-banner-main { padding:0.7rem 0.3rem;}
+            .download-banner-badges a img,
+            .app-download-row a img { height:35px !important;}
+            .hero-title { font-size: 2rem; }
         }
-        .app-download-buttons a img:last-child {
-            margin-right: 0;
+
+        .hero-section { background: #1DC6E9; }
+        .hero-title span.text-orange { font-weight: bold; }
+        .hero-title .text-dark { font-weight: bold; color: #232323 !important; }
+        .hero-image .app-header.bg-orange { background: #FF8C00 !important; }
+        .feature-preview .fa-map-marker-alt,
+        .feature-preview .fa-handshake,
+        .feature-preview .fa-shield-alt { color: #FF8C00 !important; }
+        .phone-frame { border: 6px solid #23232333; border-radius: 1.7rem; box-shadow: 0 6px 32px #0001; }
+        .feature-preview { color: #232323; font-weight: 500; }
+        .feature-preview i { color: #FF8C00 !important; }
+
+        /* Get in Touch (Contact) Orange Theme */
+        #contact {
+          background: linear-gradient(93deg,#FF8C00 80%,#FFD580 100%);
+          color: #fff !important;
+          padding-top: 4rem; padding-bottom: 4rem;
         }
-        .app-download-buttons a img:hover {
-            transform: scale(1.07);
+        #contact h2,
+        #contact .section-title { color: #fff !important; }
+        #contact .contact-info,
+        #contact .contact-form {
+          background: rgba(255,255,255,0.12);
+          border-radius: 1.2rem;
+          padding:2rem 1.5rem 2rem 1.5rem;
+          color: #fff;
         }
-        @media (max-width: 600px) {
-            .app-download-buttons a img { height: 44px; }
-            .navbar-logo { height: 36px!important; }
+        #contact .contact-info { margin-bottom: 1.5rem; }
+        #contact .form-label,
+        #contact .contact-item,
+        #contact .contact-info h5,
+        #contact .contact-info h6,
+        #contact .contact-info span,
+        #contact .contact-info a,
+        #contact .social-link i {
+          color: #fff !important;
+        }
+        #contact .form-control {
+          background: rgba(255,255,255,0.23);
+          color: #1a1a1a;
+          border: none;
+          border-radius: 0.59rem;
+        }
+        #contact .form-control:focus {
+          border-color: #FFD580;
+          background: #fff6e2;
+        }
+        #contact .btn-orange {
+          background: #fff;
+          color: #FF8C00 !important;
+          font-weight: bold;
+          border: none;
+        }
+        #contact .btn-orange:hover {
+          background: #FFD580!important;
+          color: #e07b00 !important;
+        }
+        #contact .social-link i {
+          font-size: 1.7rem;
+          border-radius:50%;
+          padding: 0.33em;
+          background: #FFD5802e;
+          background-clip: content-box;
+        }
+        #contact .contact-item i {
+          color: #FFD580 !important;
         }
     </style>
 </head>
@@ -63,52 +139,51 @@
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="hero-section" style="background: #1DC6E9;">
+<section id="home" class="hero-section" style="padding-top:5.5rem;">
     <div class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-6">
-                <h1 class="hero-title mb-4">
+                <h1 class="hero-title mb-3" style="font-size:3.2rem;">
                     <span class="text-orange">Deliver Goods.</span><br>
                     <span class="text-orange">Share Rides.</span><br>
                     <span class="text-dark">Empower Villages.</span>
                 </h1>
-                <p class="hero-subtitle mb-4">Where Travel Meets Purpose</p>
-                <p class="lead mb-5">
+                <p class="mt-2 mb-2" style="font-weight:600;font-size:1.25rem;color:#FF8C00;">Where Travel Meets Purpose</p>
+                <p class="lead mb-5" style="font-size:1.13rem;">
                     Connecting travelers heading from cities to rural areas with villagers who need essential goods or shared rides. Turn your journey into a community-powered solution.
                 </p>
-                <!-- App Download Buttons -->
-                <div class="app-download-buttons mt-3 mb-3 d-flex flex-wrap align-items-center">
-                  <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                         alt="Get it on Google Play">
-                  </a>
-                  <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                         alt="Download on the App Store">
-                  </a>
+                <div class="app-download-row d-flex mt-2 gap-3 mb-4">
+                    <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                             alt="Get it on Google Play">
+                    </a>
+                    <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                             alt="Download on the App Store">
+                    </a>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 d-flex justify-content-center">
                 <div class="hero-image">
                     <div class="phone-mockup">
-                        <div class="phone-frame">
+                        <div class="phone-frame bg-white">
                             <div class="phone-screen">
                                 <div class="app-preview">
-                                    <div class="app-header bg-orange text-white p-3 text-center">
+                                    <div class="app-header bg-orange text-white p-3 text-center" style="border-radius:1.4rem 1.4rem 0 0;">
                                         <h6 class="mb-0">Pickevery</h6>
                                         <small>Now Available</small>
                                     </div>
-                                    <div class="app-content p-4">
-                                        <div class="feature-preview mb-3">
-                                            <i class="fas fa-map-marker-alt text-orange me-2"></i>
+                                    <div class="app-content px-4 py-3">
+                                        <div class="feature-preview mb-3 d-flex align-items-center">
+                                            <i class="fas fa-map-marker-alt me-2 text-orange"></i>
                                             <span>Find nearby requests</span>
                                         </div>
-                                        <div class="feature-preview mb-3">
-                                            <i class="fas fa-handshake text-orange me-2"></i>
+                                        <div class="feature-preview mb-3 d-flex align-items-center">
+                                            <i class="fas fa-handshake me-2 text-orange"></i>
                                             <span>Connect with travelers</span>
                                         </div>
-                                        <div class="feature-preview">
-                                            <i class="fas fa-shield-alt text-orange me-2"></i>
+                                        <div class="feature-preview d-flex align-items-center">
+                                            <i class="fas fa-shield-alt me-2 text-orange"></i>
                                             <span>Verified community</span>
                                         </div>
                                     </div>
@@ -121,6 +196,22 @@
         </div>
     </div>
 </section>
+
+<!-- App Download Banner -->
+<div class="download-banner-main mt-0 mb-4">
+    <div>
+        <h2 class="fw-bold mb-1" style="font-size:2rem;">Be the Connection. <span style="color:#FFD580;">Be the Change.</span></h2>
+        <p class="mb-3" style="font-size: 1.21rem;">Download the Pickevery app and make every journey count!</p>
+    </div>
+    <div class="download-banner-badges d-flex align-items-center justify-content-center">
+        <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+        </a>
+        <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+        </a>
+    </div>
+</div>
 
 <!-- Problem Section -->
 <section id="problem" class="py-5 bg-light">
@@ -227,7 +318,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-shield-alt text-orange"></i>
                     </div>
                     <h5>Verified Travelers</h5>
                     <p>All travelers go through KYC verification ensuring a trusted and secure network for everyone.</p>
@@ -236,7 +327,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-boxes"></i>
+                        <i class="fas fa-boxes text-orange"></i>
                     </div>
                     <h5>Dual Utility</h5>
                     <p>Platform supports both goods delivery and ride-sharing to maximize community impact.</p>
@@ -245,7 +336,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fas fa-dollar-sign text-orange"></i>
                     </div>
                     <h5>Low Cost, High Impact</h5>
                     <p>Affordable solutions for villagers while creating meaningful earning opportunities for travelers.</p>
@@ -254,7 +345,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-mobile-alt text-orange"></i>
                     </div>
                     <h5>Rural-Friendly Design</h5>
                     <p>Simple, intuitive app design optimized for users with varying levels of smartphone experience.</p>
@@ -263,7 +354,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-coins"></i>
+                        <i class="fas fa-coins text-orange"></i>
                     </div>
                     <h5>Traveler Incentives</h5>
                     <p>Earn rewards for helping communities while contributing to social impact and rural development.</p>
@@ -272,85 +363,10 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart text-orange"></i>
                     </div>
                     <h5>Community Focused</h5>
                     <p>Built with purpose to strengthen connections between urban and rural communities.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- App Preview Section -->
-<section id="app-preview" class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h2 class="section-title mb-4">App Preview</h2>
-                <p class="lead mb-4">Get a sneak peek at our mobile platform currently in MVP stage and testing in selected areas.</p>
-                <div class="preview-features">
-                    <div class="preview-feature mb-3">
-                        <i class="fas fa-check text-orange me-3"></i>
-                        <span>Intuitive request submission</span>
-                    </div>
-                    <div class="preview-feature mb-3">
-                        <i class="fas fa-check text-orange me-3"></i>
-                        <span>Real-time traveler matching</span>
-                    </div>
-                    <div class="preview-feature mb-3">
-                        <i class="fas fa-check text-orange me-3"></i>
-                        <span>Secure payment integration</span>
-                    </div>
-                    <div class="preview-feature mb-4">
-                        <i class="fas fa-check text-orange me-3"></i>
-                        <span>Community feedback system</span>
-                    </div>
-                </div>
-                <p class="text-muted">Now available on Android and iOS. Download and try Pickevery today!</p>
-            </div>
-            <div class="col-lg-6">
-                <div class="app-screenshots">
-                    <div class="screenshot-placeholder">
-                        <div class="phone-mockup-large">
-                            <div class="phone-frame-large">
-                                <div class="phone-screen-large">
-                                    <div class="mock-app">
-                                        <div class="mock-header bg-orange text-white p-3">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <h6 class="mb-0">Pickevery</h6>
-                                                <i class="fas fa-bell"></i>
-                                            </div>
-                                        </div>
-                                        <div class="mock-content p-3">
-                                            <div class="mock-request-card mb-3">
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="fas fa-pills text-orange me-2"></i>
-                                                    <strong>Medicine Request</strong>
-                                                </div>
-                                                <p class="small text-muted mb-2">Village Kamand → Mandi</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="small">₹50 reward</span>
-                                                    <span class="badge bg-success">Available</span>
-                                                </div>
-                                            </div>
-                                            <div class="mock-request-card">
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <i class="fas fa-car text-orange me-2"></i>
-                                                    <strong>Ride Share</strong>
-                                                </div>
-                                                <p class="small text-muted mb-2">Dharamshala → Palampur</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="small">₹100 reward</span>
-                                                    <span class="badge bg-warning">In Progress</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -399,49 +415,47 @@
     </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="py-5">
+<!-- Contact Section (Orange) -->
+<section id="contact">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="section-title text-center mb-5">Get in Touch</h2>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="contact-info">
-                            <h5 class="mb-4">Contact Information</h5>
-                            <div class="contact-item mb-3">
-                                <i class="fas fa-envelope text-orange me-3"></i>
-                                <span>pickevery.official@gmail.com</span>
-                            </div>
-                            <div class="social-links mt-4">
-                                <h6 class="mb-3">Follow Us</h6>
-                                <a href="https://www.instagram.com/pickevery.official/" class="social-link me-3">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/company/pickevery" class="social-link me-3">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </div>
-                        </div>
+        <h2 class="section-title text-center mb-5">Get in Touch</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-5">
+                <div class="contact-info">
+                    <h5 class="mb-4">Contact Information</h5>
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-envelope me-3"></i>
+                        <span>pickevery.official@gmail.com</span>
                     </div>
-                    <div class="col-md-6">
-                        <form class="contact-form">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-orange"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
-                        </form>
+                    <div class="social-links mt-4">
+                        <h6 class="mb-3">Follow Us</h6>
+                        <a href="https://www.instagram.com/pickevery.official/" class="social-link me-3">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/pickevery" class="social-link me-3">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-7">
+                <form class="contact-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-orange px-4 py-2">
+                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -476,13 +490,10 @@
         </nav>
     </div>
 </footer>
-
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS if any -->
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
