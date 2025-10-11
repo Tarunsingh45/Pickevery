@@ -9,69 +9,96 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         body { background: #f8fafb; }
-        .btn-orange { background: #FF8C00; border: none; color: #fff; }
-        .btn-orange:hover, .btn-orange:focus { background: #e57b00; color: #fff;}
-        .text-orange { color: #FF8C00 !important; }
+        .navbar-logo { height: 44px; }
+
+        /* Modern download banner */
         .download-banner-main {
-            background: linear-gradient(95deg, #FF8C00 70%, #FFD580 100%);
-            padding: 2.3rem 1rem;
-            border-radius: 2.1rem;
-            margin-top: -2.2rem;
-            margin-bottom: 2.6rem;
-            max-width: 1120px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 10px 38px #FF910040;
-            display: flex; align-items: center; flex-wrap: wrap; gap:2rem; justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between; gap: 2.5rem;
+            background: linear-gradient(90deg, #FF8C00 82%, #FFD580 100%);
+            border-radius: 2.2rem;
+            padding: 2.1rem 2rem 2.1rem 3rem;
+            box-shadow: 0 7px 34px #ff910033;
+            max-width: 1200px;
+            margin: 0 auto 2.5rem auto;
+            margin-top: -2.5rem;
         }
-        .download-banner-main h2, .download-banner-main p { color: #fff !important; margin: 0;}
+        .download-banner-content {
+            flex: 1 1 440px;
+        }
+        .download-banner-content h2 {
+            color: #fff !important;
+            font-size: 2.15rem;
+            font-weight: bold;
+            margin-bottom: 0.6rem;
+        }
+        .download-banner-content p {
+            color: #fff;
+            font-size: 1.22rem;
+        }
+        .download-banner-badges {
+            display: flex; align-items:center; gap: 15px;
+        }
         .download-banner-badges a img {
             height: 58px;
-            margin-right: 12px;
-            margin-bottom: 0;
-            transition: transform 0.15s;
+            margin-bottom:0;
+            transition: transform 0.14s;
+            border-radius: 0.7rem;
         }
-        .download-banner-badges a img:last-child { margin-right: 0; }
-        .download-banner-badges a img:hover { transform: scale(1.10);}
-        .app-download-row a img { height: 54px; margin-right: 12px; }
-        .app-download-row a img:last-child { margin-right: 0; }
-        .app-download-row a img:hover { transform: scale(1.07); }
-        @media (max-width:900px) {
-            .download-banner-main { flex-direction: column; text-align: center; padding:1.39rem 0.89rem; }
-            .download-banner-badges a img { height:45px !important;}
+        .download-banner-badges a img:hover { transform: scale(1.07);}
+        @media(max-width: 900px) {
+            .download-banner-main { flex-direction: column; align-items: flex-start; text-align:left; gap:1.1rem; padding: 1.2rem 1rem;}
+            .download-banner-badges { justify-content: flex-start; }
         }
-        @media (max-width:600px) {
-            .download-banner-main { padding:0.7rem 0.3rem;}
-            .download-banner-badges a img,
-            .app-download-row a img { height:35px !important;}
-            .hero-title { font-size: 2rem; }
+        @media(max-width: 600px) {
+            .download-banner-main { padding:0.8rem 0.3rem;}
+            .download-banner-badges a img { height:35px !important;}
+            .navbar-logo { height: 34px; }
         }
 
-        .hero-section { background: #1DC6E9; }
+        /* Hero */
+        .hero-section { background: #fff; }
         .hero-title span.text-orange { font-weight: bold; }
-        .hero-title .text-dark { font-weight: bold; color: #232323 !important; }
+        .hero-title .text-dark { font-weight: bold; color: #1b1b1b !important; }
         .hero-image .app-header.bg-orange { background: #FF8C00 !important; }
-        .feature-preview .fa-map-marker-alt,
-        .feature-preview .fa-handshake,
-        .feature-preview .fa-shield-alt { color: #FF8C00 !important; }
-        .phone-frame { border: 6px solid #23232333; border-radius: 1.7rem; box-shadow: 0 6px 32px #0001; }
-        .feature-preview { color: #232323; font-weight: 500; }
         .feature-preview i { color: #FF8C00 !important; }
 
-        /* Get in Touch (Contact) Orange Theme */
+        /* Features */
+        .feature-card {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 5px 20px #2323230e;
+            text-align: center;
+            padding: 2.1rem 1.2rem 1.5rem 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .feature-icon {
+            width: 86px;
+            height: 86px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px auto;
+            border-radius: 50%;
+            background: linear-gradient(134deg, #FF8C00 74%, #FFD580 100%);
+            box-shadow: 0 7px 20px #ff910070;
+        }
+        .feature-icon i {
+            font-size: 2.1rem; color: #fff !important; /* High-contrast white for accessibility */
+            filter: drop-shadow(0 2px 6px #3332);
+        }
+
+        /* Get in Touch (Contact, orange bg, black text) */
         #contact {
-          background: linear-gradient(93deg,#FF8C00 80%,#FFD580 100%);
-          color: #fff !important;
+          background: linear-gradient(88deg,#FF8C00 82%,#FFD580 100%);
+          color: #222 !important;
           padding-top: 4rem; padding-bottom: 4rem;
         }
         #contact h2,
-        #contact .section-title { color: #fff !important; }
+        #contact .section-title { color: #222 !important; }
         #contact .contact-info,
         #contact .contact-form {
-          background: rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.13);
           border-radius: 1.2rem;
           padding:2rem 1.5rem 2rem 1.5rem;
-          color: #fff;
+          color: #222;
         }
         #contact .contact-info { margin-bottom: 1.5rem; }
         #contact .form-label,
@@ -80,18 +107,21 @@
         #contact .contact-info h6,
         #contact .contact-info span,
         #contact .contact-info a,
-        #contact .social-link i {
-          color: #fff !important;
+        #contact .social-link i,
+        #contact .contact-info .contact-item i
+        {
+          color: #222 !important;
         }
         #contact .form-control {
-          background: rgba(255,255,255,0.23);
-          color: #1a1a1a;
+          background: rgba(255,255,255,0.22);
+          color: #111;
           border: none;
           border-radius: 0.59rem;
         }
         #contact .form-control:focus {
-          border-color: #FFD580;
+          border-color: #FF8C00;
           background: #fff6e2;
+          color: #1a1a1a;
         }
         #contact .btn-orange {
           background: #fff;
@@ -111,7 +141,7 @@
           background-clip: content-box;
         }
         #contact .contact-item i {
-          color: #FFD580 !important;
+          color: #FF8C00 !important;
         }
     </style>
 </head>
@@ -121,7 +151,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#home">
             <img src="{{ url_for('static', filename='images/pickevery-logo.png') }}?v=2"
-                 alt="Pickevery Logo" class="navbar-logo" style="height: 45px;">
+                 alt="Pickevery Logo" class="navbar-logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -138,12 +168,12 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero Section (WHITE) -->
 <section id="home" class="hero-section" style="padding-top:5.5rem;">
     <div class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-6">
-                <h1 class="hero-title mb-3" style="font-size:3.2rem;">
+                <h1 class="hero-title mb-3" style="font-size:3.15rem;">
                     <span class="text-orange">Deliver Goods.</span><br>
                     <span class="text-orange">Share Rides.</span><br>
                     <span class="text-dark">Empower Villages.</span>
@@ -152,16 +182,6 @@
                 <p class="lead mb-5" style="font-size:1.13rem;">
                     Connecting travelers heading from cities to rural areas with villagers who need essential goods or shared rides. Turn your journey into a community-powered solution.
                 </p>
-                <div class="app-download-row d-flex mt-2 gap-3 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                             alt="Get it on Google Play">
-                    </a>
-                    <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
-                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-                             alt="Download on the App Store">
-                    </a>
-                </div>
             </div>
             <div class="col-lg-6 d-flex justify-content-center">
                 <div class="hero-image">
@@ -198,12 +218,12 @@
 </section>
 
 <!-- App Download Banner -->
-<div class="download-banner-main mt-0 mb-4">
-    <div>
-        <h2 class="fw-bold mb-1" style="font-size:2rem;">Be the Connection. <span style="color:#FFD580;">Be the Change.</span></h2>
-        <p class="mb-3" style="font-size: 1.21rem;">Download the Pickevery app and make every journey count!</p>
+<div class="download-banner-main">
+    <div class="download-banner-content">
+        <h2>Be the Connection. <span style="color:#FFD580;">Be the Change.</span></h2>
+        <p>Download the Pickevery app and make every journey count!</p>
     </div>
-    <div class="download-banner-badges d-flex align-items-center justify-content-center">
+    <div class="download-banner-badges">
         <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
         </a>
@@ -318,7 +338,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-shield-alt text-orange"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                     <h5>Verified Travelers</h5>
                     <p>All travelers go through KYC verification ensuring a trusted and secure network for everyone.</p>
@@ -327,7 +347,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-boxes text-orange"></i>
+                        <i class="fas fa-boxes"></i>
                     </div>
                     <h5>Dual Utility</h5>
                     <p>Platform supports both goods delivery and ride-sharing to maximize community impact.</p>
@@ -336,7 +356,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-dollar-sign text-orange"></i>
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
                     <h5>Low Cost, High Impact</h5>
                     <p>Affordable solutions for villagers while creating meaningful earning opportunities for travelers.</p>
@@ -345,7 +365,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-mobile-alt text-orange"></i>
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h5>Rural-Friendly Design</h5>
                     <p>Simple, intuitive app design optimized for users with varying levels of smartphone experience.</p>
@@ -354,7 +374,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-coins text-orange"></i>
+                        <i class="fas fa-coins"></i>
                     </div>
                     <h5>Traveler Incentives</h5>
                     <p>Earn rewards for helping communities while contributing to social impact and rural development.</p>
@@ -363,7 +383,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-heart text-orange"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
                     <h5>Community Focused</h5>
                     <p>Built with purpose to strengthen connections between urban and rural communities.</p>
@@ -415,7 +435,7 @@
     </div>
 </section>
 
-<!-- Contact Section (Orange) -->
+<!-- Contact Section (Orange, Black Text) -->
 <section id="contact">
     <div class="container">
         <h2 class="section-title text-center mb-5">Get in Touch</h2>
@@ -497,3 +517,4 @@
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+
