@@ -9,10 +9,91 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Orange Modern Callout Banner + Animation */
+        .pe-cta-banner {
+            background: linear-gradient(100deg, #FF8C00 82%, #FFD580 100%);
+            border-radius: 2.5rem;
+            box-shadow: 0 12px 42px #ff930050, 0 1.5px 20px #ffaa0065;
+            margin-top: 7rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+        }
+        .pe-hero-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: peFadeInUp 1.2s 0.13s cubic-bezier(.3,.8,.3,1) forwards;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        @keyframes peFadeInUp {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .pe-hero-glow {
+            display: inline-block;
+            animation: peGlow 1.7s infinite alternate;
+        }
+        @keyframes peGlow {
+            0% { text-shadow: 0 0 3px #FFD580, 0 0 7px #fff2db; }
+            100% { text-shadow: 0 0 18px #fff4e0, 0 0 36px #FFD580; }
+        }
+        .pe-floating-shape {
+            position: absolute;
+            opacity: .12;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+        }
+        .pe-float1 {
+            left: 3%;
+            top: 12%;
+            animation-name: peFloat1;
+        }
+        .pe-float2 {
+            right: 7%;
+            top: 38%;
+            animation-name: peFloat2;
+            animation-delay: .8s;
+        }
+        .pe-float3 {
+            left: 38%;
+            bottom: 7%;
+            animation-name: peFloat3;
+            animation-delay: 1.3s;
+        }
+        @keyframes peFloat1 {
+            0%,100% { transform: translateY(0) scale(1.13);}
+            50% { transform: translateY(-27px) scale(1);}
+        }
+        @keyframes peFloat2 {
+            0%,100% { transform: translateY(0) scale(1);}
+            50% { transform: translateY(-38px) scale(.93);}
+        }
+        @keyframes peFloat3 {
+            0%,100% { transform: translateY(0) scale(0.88);}
+            50% { transform: translateY(-17px) scale(1);}
+        }
+        .pe-cta-banner a img {
+            filter: drop-shadow(0 4px 12px #7d2e0065);
+            transition: transform .19s cubic-bezier(.43,1.28,.44,1.01);
+        }
+        .pe-cta-banner a img:hover {
+            transform: scale(1.065) rotate(-2deg);
+        }
+        @media (max-width: 600px) {
+            .pe-cta-banner { padding: 1.4rem !important; }
+            .pe-hero-animate { font-size: 1.36rem !important;}
+            .pe-cta-banner a img { height: 52px !important;}
+        }
+    </style>
 </head>
-<body>
+<body style="background: #f8fafb;">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
@@ -24,86 +105,36 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#problem">The Problem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#solution">Our Solution</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-orange text-white px-4" href="#waitlist">Join Waitlist</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#problem">The Problem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#solution">Our Solution</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-6">
-                    <h1 class="hero-title mb-4">
-                        <span class="text-orange">Deliver Goods.</span><br>
-                        <span class="text-orange">Share Rides.</span><br>
-                        <span class="text-dark">Empower Villages.</span>
-                    </h1>
-                    <p class="hero-subtitle mb-4">
-                        Where Travel Meets Purpose
-                    </p>
-                    <p class="lead mb-5">
-                        Connecting travelers heading from cities to rural areas with villagers who need essential goods or shared rides. Turn your journey into a community-powered solution.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#waitlist" class="btn btn-orange btn-lg me-3 mb-3">
-                            <i class="fas fa-bell me-2"></i>Join the Waitlist
-                        </a>
-                        <a href="#solution" class="btn btn-outline-dark btn-lg mb-3">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-image">
-                        <div class="phone-mockup">
-                            <div class="phone-frame">
-                                <div class="phone-screen">
-                                    <div class="app-preview">
-                                        <div class="app-header bg-orange text-white p-3 text-center">
-                                            <h6 class="mb-0">Pickevery</h6>
-                                            <small>Coming Soon</small>
-                                        </div>
-                                        <div class="app-content p-4">
-                                            <div class="feature-preview mb-3">
-                                                <i class="fas fa-map-marker-alt text-orange me-2"></i>
-                                                <span>Find nearby requests</span>
-                                            </div>
-                                            <div class="feature-preview mb-3">
-                                                <i class="fas fa-handshake text-orange me-2"></i>
-                                                <span>Connect with travelers</span>
-                                            </div>
-                                            <div class="feature-preview">
-                                                <i class="fas fa-shield-alt text-orange me-2"></i>
-                                                <span>Verified community</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- MODERN CTA BANNER: animated, orange, energetic -->
+    <div class="pe-cta-banner position-relative overflow-hidden p-4 mx-auto my-4 rounded-4 shadow" style="max-width: 1100px;">
+      <svg class="pe-floating-shape pe-float1" width="70" height="70"><polygon points="35,8 70,70 0,70" fill="#fff"></polygon></svg>
+      <svg class="pe-floating-shape pe-float2" width="98" height="98"><circle cx="49" cy="49" r="41" fill="#fff"></circle></svg>
+      <svg class="pe-floating-shape pe-float3" width="54" height="54"><rect x="8" y="8" width="38" height="38" rx="11" fill="#fff"></rect></svg>
+      <div>
+        <h1 class="pe-hero-animate fw-bold mb-2">
+          Be the Connection. <span class="pe-hero-glow">Be the Change.</span>
+        </h1>
+        <p class="mb-4" style="font-size: 1.24rem; color: #fff;">Download the Pickevery app now!</p>
+        <div class="d-flex flex-wrap align-items-center gap-4">
+          <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height:62px;">
+          </a>
+          <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" style="height:62px;">
+          </a>
         </div>
+      </div>
+    </div>
     </section>
 
     <!-- Problem Section -->
@@ -496,10 +527,29 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Set current year automatically
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Optionally: add tiny confetti burst on load for celebration effect
+        window.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                for(let i=0; i<18; i++){
+                    const conf = document.createElement('div');
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random()*90+5+'vw';
+                    conf.style.top = '-7px';
+                    conf.style.width = conf.style.height = Math.random() * 8 + 7 + 'px';
+                    conf.style.background = ['#FF8C00','#FFD580','#fff','#FFCC8C'][Math.floor(Math.random()*4)];
+                    conf.style.borderRadius = '50%';
+                    conf.style.zIndex = 66;
+                    conf.style.opacity = '.95';
+                    conf.style.pointerEvents = 'none';
+                    conf.style.transition = 'transform 1.4s cubic-bezier(0.16,1,0.3,1), opacity 1.4s';
+                    document.body.appendChild(conf);
+                    setTimeout(()=>{conf.style.transform='translateY(' + (window.innerHeight*0.94+Math.random()*80) + 'px) rotate('+(Math.random()*40-20)+'deg)'; conf.style.opacity='0';}, 12 + Math.random()*120);
+                    setTimeout(()=>{document.body.removeChild(conf)}, 1700);
+                }
+            }, 150);
+        });
     </script>
-
 </body>
 </html>
