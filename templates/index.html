@@ -1,167 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pickevery - Where Travel Meets Purpose</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- AOS (Animate On Scroll) for scroll animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Site styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
-        :root{
-            --orange: #FF8C00;
-            --orange-soft: #FFD580;
-            --dark: #1b1b1b;
-            --card-bg: #fff;
-            --shadow: 0 8px 34px rgba(255,140,0,0.12);
+        body { background: #f8fafb; }
+        .navbar-logo { height: 44px; }
+
+        /* Modern download banner */
+        .download-banner-main {
+            display: flex; align-items: center; justify-content: space-between; gap: 2.5rem;
+            background: linear-gradient(90deg, #FF8C00 82%, #FFD580 100%);
+            border-radius: 2.2rem;
+            padding: 2.1rem 2rem 2.1rem 3rem;
+            box-shadow: 0 7px 34px #ff910033;
+            max-width: 1200px;
+            margin: 0 auto 2.5rem auto;
+            margin-top: -2.5rem;
         }
-        html,body{height:100%;}
-        body{
-            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background:#f8fafb;
-            color:var(--dark);
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
+        .download-banner-content {
+            flex: 1 1 440px;
         }
-
-        /* NAVBAR */
-        .navbar { background: #fff; }
-        .navbar-logo{ height:44px; object-fit:contain; }
-        .navbar .nav-link { color: #333; font-weight:600; }
-        .navbar .nav-link:hover { color: var(--orange); }
-
-        /* HERO */
-        .hero-section { padding-top:5.5rem; padding-bottom:3.5rem; }
-        .hero-title { font-size:2.6rem; line-height:1.02; font-weight:700; color:var(--dark); }
-        .hero-title .text-orange { color:var(--orange); }
-        .hero-sub { color:var(--orange); font-weight:700; margin-top:0.5rem; }
-        .hero-lead { font-size:1.05rem; color:#333; margin-top:1rem; }
-
-        /* Phone mockup (keeps original simple look) */
-        .phone-mockup { width:260px; border-radius:20px; overflow:hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-        .phone-frame { background:#fff; border-radius:18px; }
-        .app-header { background:var(--orange); color:#fff; border-radius:14px 14px 0 0; padding:10px 12px; text-align:center; font-weight:700; }
-        .app-content { padding:12px 14px; }
-
-        /* DOWNLOAD BANNER */
-        .download-banner {
-            max-width:1200px;
-            margin: -2.1rem auto 2rem;
-            background: linear-gradient(90deg, var(--orange) 82%, var(--orange-soft) 100%);
-            border-radius: 22px;
-            padding: 20px 26px;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:18px;
-            box-shadow: var(--shadow);
+        .download-banner-content h2 {
+            color: #fff !important;
+            font-size: 2.15rem;
+            font-weight: bold;
+            margin-bottom: 0.6rem;
         }
-        .download-content h2{ color:#fff; font-size:1.6rem; margin:0; font-weight:800; }
-        .download-content p{ color:#fff; margin:6px 0 0; font-weight:600; opacity:0.95; }
-        .download-badges { display:flex; gap:16px; align-items:center; }
-        .download-badges img { height:58px; border-radius:8px; box-shadow: 0 8px 26px rgba(0,0,0,0.08);}
-        .download-badges a:hover img { transform: translateY(-6px); transition:transform .22s ease; }
-
-        /* Mobile banner fix */
-        @media(max-width:900px){
-            .download-banner{ flex-direction:column; align-items:flex-start; padding:18px; text-align:left;}
-            .download-content h2{ font-size:1.25rem; }
-            .download-badges img{ height:46px; }
+        .download-banner-content p {
+            color: #fff;
+            font-size: 1.22rem;
         }
-        @media(max-width:520px){
-            .download-content p{ font-size:.95rem; }
-            .download-content h2{ font-size:1.1rem; }
-            .download-badges { width:100%; justify-content:flex-start; }
+        .download-banner-badges {
+            display: flex; align-items:center; gap: 15px;
+        }
+        .download-banner-badges a img {
+            height: 58px;
+            margin-bottom:0;
+            transition: transform 0.14s;
+            border-radius: 0.7rem;
+        }
+        .download-banner-badges a img:hover { transform: scale(1.07);}
+        @media(max-width: 900px) {
+            .download-banner-main { flex-direction: column; align-items: flex-start; text-align:left; gap:1.1rem; padding: 1.2rem 1rem;}
+            .download-banner-badges { justify-content: flex-start; }
+        }
+        @media(max-width: 600px) {
+            .download-banner-main { padding:0.8rem 0.3rem;}
+            .download-banner-badges a img { height:35px !important;}
+            .navbar-logo { height: 34px; }
         }
 
-        /* Problem / Features cards */
-        .problem-card, .feature-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 22px;
-            box-shadow: 0 8px 26px rgba(11,15,20,0.04);
-            text-align:center;
-            min-height:160px;
-        }
-        .problem-icon i, .feature-icon i { color:var(--orange); font-size:1.6rem; }
-        .section-title { font-weight:800; margin-bottom: 1rem; font-size:1.6rem; }
+        /* Hero */
+        .hero-section { background: #fff; }
+        .hero-title span.text-orange { font-weight: bold; }
+        .hero-title .text-dark { font-weight: bold; color: #1b1b1b !important; }
+        .hero-image .app-header.bg-orange { background: #FF8C00 !important; }
+        .feature-preview i { color: #FF8C00 !important; }
 
-        /* Solution steps (How it works) */
-        .solution-step { text-align:center; padding:18px; min-height:210px; position:relative; }
-        .step-number {
-            position:absolute;
-            top:18px;
-            left:50%;
-            transform:translateX(-50%);
-            background:var(--orange);
-            color:#fff;
-            width:52px;
-            height:52px;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:800;
-            box-shadow: 0 8px 22px rgba(255,140,0,0.14);
-            font-size:1.1rem;
+        /* Features */
+        .feature-card {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 5px 20px #2323230e;
+            text-align: center;
+            padding: 2.1rem 1.2rem 1.5rem 1.2rem;
+            margin-bottom: 2rem;
         }
-        .solution-step .step-icon { margin-top:36px; }
-        .solution-step h4 { margin-top:12px; font-weight:700; }
-
-        /* Fix numbering on mobile: push number to top-left for readability */
-        @media(max-width:768px){
-            .solution-step{ padding-top:36px; }
-            .step-number { top:10px; left:18px; transform:none; width:44px; height:44px; font-size:1rem; }
+        .feature-icon {
+            width: 86px;
+            height: 86px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px auto;
+            border-radius: 50%;
+            background: linear-gradient(134deg, #FF8C00 74%, #FFD580 100%);
+            box-shadow: 0 7px 20px #ff910070;
+        }
+        .feature-icon i {
+            font-size: 2.1rem; color: #fff !important; /* High-contrast white for accessibility */
+            filter: drop-shadow(0 2px 6px #3332);
         }
 
-        /* Features grid small tweaks */
-        .feature-icon { width:76px; height:76px; margin:0 auto 12px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,var(--orange) 70%,var(--orange-soft) 100%); box-shadow: 0 10px 26px rgba(255,140,0,0.12);}
-        .feature-card h5 { font-weight:700; margin-top:8px; }
-
-        /* Contact section (orange bg but black text) */
-        #contact { background: linear-gradient(88deg,var(--orange) 82%,var(--orange-soft) 100%); color:#222; padding:56px 0; }
-        #contact .contact-info { background: rgba(255,255,255,0.12); border-radius:12px; padding:18px;}
-        #contact .btn-orange { background:#fff; color:var(--orange); font-weight:800; border-radius:8px; padding:10px 16px; }
-        #contact a.social-link { color:#222; font-size:20px; margin-right:12px; }
-
-        /* Footer */
-        footer.bg-dark { background:#0e0f10; color:#fff; padding:26px 0; }
-
-        /* Add subtle hover & transform animations */
-        .feature-card:hover, .problem-card:hover, .mission-card:hover { transform:translateY(-6px); transition:transform .28s cubic-bezier(.2,.9,.2,1); box-shadow: 0 18px 46px rgba(0,0,0,0.08); }
-        .download-badges a img { transition: transform .22s ease, box-shadow .22s ease; }
-
-        /* small screen tweaks */
-        @media (max-width:420px){
-            .hero-title { font-size:1.75rem; }
-            .hero-lead { font-size:0.95rem; }
-            .download-banner { padding:14px; border-radius:14px; }
+        /* Get in Touch (Contact, orange bg, black text) */
+        #contact {
+          background: linear-gradient(88deg,#FF8C00 82%,#FFD580 100%);
+          color: #222 !important;
+          padding-top: 4rem; padding-bottom: 4rem;
+        }
+        #contact h2,
+        #contact .section-title { color: #222 !important; }
+        #contact .contact-info,
+        #contact .contact-form {
+          background: rgba(255,255,255,0.13);
+          border-radius: 1.2rem;
+          padding:2rem 1.5rem 2rem 1.5rem;
+          color: #222;
+        }
+        #contact .contact-info { margin-bottom: 1.5rem; }
+        #contact .form-label,
+        #contact .contact-item,
+        #contact .contact-info h5,
+        #contact .contact-info h6,
+        #contact .contact-info span,
+        #contact .contact-info a,
+        #contact .social-link i,
+        #contact .contact-info .contact-item i
+        {
+          color: #222 !important;
+        }
+        #contact .form-control {
+          background: rgba(255,255,255,0.22);
+          color: #111;
+          border: none;
+          border-radius: 0.59rem;
+        }
+        #contact .form-control:focus {
+          border-color: #FF8C00;
+          background: #fff6e2;
+          color: #1a1a1a;
+        }
+        #contact .btn-orange {
+          background: #fff;
+          color: #FF8C00 !important;
+          font-weight: bold;
+          border: none;
+        }
+        #contact .btn-orange:hover {
+          background: #FFD580!important;
+          color: #e07b00 !important;
+        }
+        #contact .social-link i {
+          font-size: 1.7rem;
+          border-radius:50%;
+          padding: 0.33em;
+          background: #FFD5802e;
+          background-clip: content-box;
+        }
+        #contact .contact-item i {
+          color: #FF8C00 !important;
         }
     </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#home">
-            <img src="{{ url_for('static', filename='images/pickevery-logo.png') }}" alt="Pickevery" class="navbar-logo">
+            <img src="{{ url_for('static', filename='images/pickevery-logo.png') }}?v=2"
+                 alt="Pickevery Logo" class="navbar-logo">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-                <li class="nav-item"><a class="nav-link" href="#problem">Problem</a></li>
-                <li class="nav-item"><a class="nav-link" href="#solution">Solution</a></li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#problem">The Problem</a></li>
+                <li class="nav-item"><a class="nav-link" href="#solution">Our Solution</a></li>
                 <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
@@ -170,38 +168,46 @@
     </div>
 </nav>
 
-<!-- HERO -->
-<section id="home" class="hero-section">
+<!-- Hero Section (WHITE) -->
+<section id="home" class="hero-section" style="padding-top:5.5rem;">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out">
-                <h1 class="hero-title">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <h1 class="hero-title mb-3" style="font-size:3.15rem;">
                     <span class="text-orange">Deliver Goods.</span><br>
                     <span class="text-orange">Share Rides.</span><br>
                     <span class="text-dark">Empower Villages.</span>
                 </h1>
-                <div class="hero-sub">Where Travel Meets Purpose</div>
-                <p class="hero-lead">
-                    Connects regular travelers and villagers: villagers request essentials or seats, travelers deliver and earn. A lightweight, local-first platform for faster access and shared mobility.
+                <p class="mt-2 mb-2" style="font-weight:600;font-size:1.25rem;color:#FF8C00;">Where Travel Meets Purpose</p>
+                <p class="lead mb-5" style="font-size:1.13rem;">
+                    Connecting travelers heading from cities to rural areas with villagers who need essential goods or shared rides. Turn your journey into a community-powered solution.
                 </p>
             </div>
-
-            <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-left" data-aos-duration="900" data-aos-easing="ease-in-out">
-                <div class="phone-mockup">
-                    <div class="phone-frame">
-                        <div class="app-header">Pickevery • Now Available</div>
-                        <div class="app-content">
-                            <div style="margin-bottom:8px; display:flex; align-items:center;">
-                                <i class="fas fa-map-marker-alt me-2" style="color:var(--orange)"></i>
-                                <div style="font-weight:700;">Find nearby requests</div>
-                            </div>
-                            <div style="margin-bottom:8px; display:flex; align-items:center;">
-                                <i class="fas fa-handshake me-2" style="color:var(--orange)"></i>
-                                <div style="font-weight:700;">Connect with travelers</div>
-                            </div>
-                            <div style="display:flex; align-items:center;">
-                                <i class="fas fa-shield-alt me-2" style="color:var(--orange)"></i>
-                                <div style="font-weight:700;">Verified travelers (KYC)</div>
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="hero-image">
+                    <div class="phone-mockup">
+                        <div class="phone-frame bg-white">
+                            <div class="phone-screen">
+                                <div class="app-preview">
+                                    <div class="app-header bg-orange text-white p-3 text-center" style="border-radius:1.4rem 1.4rem 0 0;">
+                                        <h6 class="mb-0">Pickevery</h6>
+                                        <small>Now Available</small>
+                                    </div>
+                                    <div class="app-content px-4 py-3">
+                                        <div class="feature-preview mb-3 d-flex align-items-center">
+                                            <i class="fas fa-map-marker-alt me-2 text-orange"></i>
+                                            <span>Find nearby requests</span>
+                                        </div>
+                                        <div class="feature-preview mb-3 d-flex align-items-center">
+                                            <i class="fas fa-handshake me-2 text-orange"></i>
+                                            <span>Connect with travelers</span>
+                                        </div>
+                                        <div class="feature-preview d-flex align-items-center">
+                                            <i class="fas fa-shield-alt me-2 text-orange"></i>
+                                            <span>Verified community</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -209,300 +215,305 @@
             </div>
         </div>
     </div>
-
-    <!-- DOWNLOAD BANNER -->
-    <div class="container">
-        <div class="download-banner" data-aos="zoom-in" data-aos-duration="700">
-            <div class="download-content">
-                <h2>Be the Connection. <span style="color:#fff">Be the Change.</span></h2>
-                <p>Download the Pickevery app and make every journey count.</p>
-            </div>
-
-            <div class="download-badges">
-                <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank" aria-label="Google Play">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store badge">
-                </a>
-                <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank" aria-label="App Store">
-                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store badge">
-                </a>
-            </div>
-        </div>
-    </div>
 </section>
 
-<!-- PROBLEM -->
+<!-- App Download Banner -->
+<div class="download-banner-main">
+    <div class="download-banner-content">
+        <h2>Be the Connection. <span style="color:#FFD580;">Be the Change.</span></h2>
+        <p>Download the Pickevery app and make every journey count!</p>
+    </div>
+    <div class="download-banner-badges">
+        <a href="https://play.google.com/store/apps/details?id=com.vj.pickiemobile&pcampaignid=web_share" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+        </a>
+        <a href="https://apps.apple.com/in/app/pickevery/id6745344951" target="_blank">
+            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+        </a>
+    </div>
+</div>
+
+<!-- Problem Section -->
 <section id="problem" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <h2 class="section-title">Why rural communities are disconnected</h2>
-            <p style="opacity:.85; max-width:760px; margin:0 auto;">Essential goods and same-day travel are often unavailable for people living outside cities. Pickevery targets that gap by coordinating travelers and local demand.</p>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title mb-5">Why Rural Communities Are Disconnected</h2>
+            </div>
         </div>
-
         <div class="row g-4">
-            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
-                <div class="problem-card">
-                    <div class="problem-icon mb-3"><i class="fas fa-clock"></i></div>
-                    <h5>Delayed essentials</h5>
-                    <p style="opacity:.8;">Medicines and urgent items can take hours or days to reach remote locations.</p>
+            <div class="col-md-6 col-lg-3">
+                <div class="problem-card text-center">
+                    <div class="problem-icon mb-3">
+                        <i class="fas fa-clock text-orange"></i>
+                    </div>
+                    <h5>Delayed Essentials</h5>
+                    <p>Medicines, books, and groceries arrive late or not at all in rural areas.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
-                <div class="problem-card">
-                    <div class="problem-icon mb-3"><i class="fas fa-money-bill-wave"></i></div>
-                    <h5>High travel costs</h5>
-                    <p style="opacity:.8;">Traveling to the city for small items is expensive and time-consuming.</p>
+            <div class="col-md-6 col-lg-3">
+                <div class="problem-card text-center">
+                    <div class="problem-icon mb-3">
+                        <i class="fas fa-money-bill-wave text-orange"></i>
+                    </div>
+                    <h5>High Travel Costs</h5>
+                    <p>Villagers spend significant money traveling to towns for basic needs.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
-                <div class="problem-card">
-                    <div class="problem-icon mb-3"><i class="fas fa-truck"></i></div>
-                    <h5>No delivery system</h5>
-                    <p style="opacity:.8;">Traditional couriers rarely serve very remote villages.</p>
+            <div class="col-md-6 col-lg-3">
+                <div class="problem-card text-center">
+                    <div class="problem-icon mb-3">
+                        <i class="fas fa-truck text-orange"></i>
+                    </div>
+                    <h5>No Delivery System</h5>
+                    <p>Traditional delivery services don't reach remote rural areas.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="320">
-                <div class="problem-card">
-                    <div class="problem-icon mb-3"><i class="fas fa-route"></i></div>
-                    <h5>Underused routes</h5>
-                    <p style="opacity:.8;">Many travelers pass through rural areas but there's no easy way to coordinate help.</p>
+            <div class="col-md-6 col-lg-3">
+                <div class="problem-card text-center">
+                    <div class="problem-icon mb-3">
+                        <i class="fas fa-route text-orange"></i>
+                    </div>
+                    <h5>Missed Opportunities</h5>
+                    <p>Many travelers pass through villages daily but can't help due to lack of coordination.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SOLUTION -->
+<!-- Solution Section -->
 <section id="solution" class="py-5">
     <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <h2 class="section-title">How Pickevery Works</h2>
-            <p style="opacity:.85; max-width:760px; margin:0 auto;">A simple 3-step flow matching local needs with passing travelers.</p>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title mb-3">How PickEvery Works</h2>
+                <p class="lead mb-5">A simple 3-step process that connects rural needs with urban travelers</p>
+            </div>
         </div>
-
         <div class="row g-4">
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="80">
-                <div class="solution-step">
+            <div class="col-lg-4">
+                <div class="solution-step text-center">
                     <div class="step-number">1</div>
-                    <div class="step-icon mb-3"><i class="fas fa-mobile-alt fa-2x" style="color:var(--orange)"></i></div>
-                    <h4>Villager requests</h4>
-                    <p style="opacity:.85;">Submit requests for urgent items or seats via the app.</p>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-mobile-alt text-orange"></i>
+                    </div>
+                    <h4>Villager Requests</h4>
+                    <p>Rural community members submit requests for essential goods or rides through our simple app interface.</p>
                 </div>
             </div>
-
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="160">
-                <div class="solution-step">
+            <div class="col-lg-4">
+                <div class="solution-step text-center">
                     <div class="step-number">2</div>
-                    <div class="step-icon mb-3"><i class="fas fa-search fa-2x" style="color:var(--orange)"></i></div>
-                    <h4>Traveler matches</h4>
-                    <p style="opacity:.85;">Verified travelers on the same route see matching requests and accept them.</p>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-search text-orange"></i>
+                    </div>
+                    <h4>Traveler Matches</h4>
+                    <p>Verified travelers heading to rural areas see matching requests along their route and choose to help.</p>
                 </div>
             </div>
-
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="240">
-                <div class="solution-step">
+            <div class="col-lg-4">
+                <div class="solution-step text-center">
                     <div class="step-number">3</div>
-                    <div class="step-icon mb-3"><i class="fas fa-check-circle fa-2x" style="color:var(--orange)"></i></div>
-                    <h4>Mission complete</h4>
-                    <p style="opacity:.85;">Delivery or shared ride completed; traveler earns a small payout.</p>
+                    <div class="step-icon mb-3">
+                        <i class="fas fa-check-circle text-orange"></i>
+                    </div>
+                    <h4>Mission Complete</h4>
+                    <p>Traveler delivers goods or provides ride, earns incentives, and creates positive community impact.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FEATURES -->
+<!-- Features Section -->
 <section id="features" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <h2 class="section-title">Platform Features</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title mb-5">Platform Features</h2>
+            </div>
         </div>
-
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="60">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h5>Verified travelers</h5>
-                    <p style="opacity:.85;">KYC for safety and trust in the network.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Verified Travelers</h5>
+                    <p>All travelers go through KYC verification ensuring a trusted and secure network for everyone.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="140">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-boxes"></i></div>
-                    <h5>Dual utility</h5>
-                    <p style="opacity:.85;">Delivery + shared rides on one lightweight platform.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h5>Dual Utility</h5>
+                    <p>Platform supports both goods delivery and ride-sharing to maximize community impact.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="220">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
-                    <h5>Low cost, high impact</h5>
-                    <p style="opacity:.85;">Affordable for villagers, micro-earnings for travelers.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h5>Low Cost, High Impact</h5>
+                    <p>Affordable solutions for villagers while creating meaningful earning opportunities for travelers.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="300">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h5>Rural-friendly UI</h5>
-                    <p style="opacity:.85;">Simple flows optimized for low-literacy and intermittent connectivity.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5>Rural-Friendly Design</h5>
+                    <p>Simple, intuitive app design optimized for users with varying levels of smartphone experience.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="380">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-coins"></i></div>
-                    <h5>Traveler incentives</h5>
-                    <p style="opacity:.85;">Transparent earnings and upcoming cash-out features.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h5>Traveler Incentives</h5>
+                    <p>Earn rewards for helping communities while contributing to social impact and rural development.</p>
                 </div>
             </div>
-
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="460">
+            <div class="col-md-6 col-lg-4">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-heart"></i></div>
-                    <h5>Community focused</h5>
-                    <p style="opacity:.85;">Designed to strengthen urban–rural connections.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h5>Community Focused</h5>
+                    <p>Built with purpose to strengthen connections between urban and rural communities.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="py-5">
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-4" data-aos="fade-up">
-            <h2 class="section-title">About Us</h2>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-                <h4>Founded on purpose</h4>
-                <p style="opacity:.9;">Pickevery was started in 2025 by two co-founders who noticed a persistent gap in rural access to urgent items and mobility. We harness routine travel to create a local-first, decentralized delivery & shared-ride network that benefits both villagers and travelers.</p>
-                <ul style="opacity:.9;">
-                    <li><strong>Local-first:</strong> Designed for underconnected regions.</li>
-                    <li><strong>Lightweight:</strong> No warehouses — use existing travel routes.</li>
-                    <li><strong>Impact:</strong> Faster access to essentials and extra income for travelers.</li>
-                </ul>
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="mission-card feature-card">
-                    <div style="text-align:center; margin-bottom:8px;"><i class="fas fa-bullseye" style="font-size:28px; color:var(--orange)"></i></div>
-                    <h5 class="text-center">Our mission</h5>
-                    <p class="text-center" style="opacity:.85;">Make everyday journeys work for communities — faster access, lower costs, and meaningful local earnings.</p>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title text-center mb-5">About Us</h2>
+                <div class="about-content">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h4 class="mb-3">Founded on Purpose</h4>
+                            <p class="mb-4">
+                                Pickevery was founded in early 2025 by two passionate co-founders who recognized the deep gap in rural access and the untapped potential of everyday travel.
+                            </p>
+                            <p class="mb-4">
+                                We believe that technology should bridge divides, not create them. Our platform turns ordinary journeys into extraordinary opportunities for community support and rural empowerment.
+                            </p>
+                            <h5 class="text-orange mb-3">Why PickEvery is Different</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>No need for delivery fleets or warehouses</li>
+                                <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Built for underserved areas (rural-first approach)</li>
+                                <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Micro-earning opportunities for travelers</li>
+                                <li class="mb-2"><i class="fas fa-check text-orange me-2"></i>Community and impact-focused mission</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mission-card">
+                                <div class="mission-icon text-center mb-3">
+                                    <i class="fas fa-bullseye text-orange"></i>
+                                </div>
+                                <h5 class="text-center mb-3">Our Mission</h5>
+                                <p class="text-center">
+                                    To create a sustainable, community-driven ecosystem where every journey has the potential to make a positive impact on rural communities across India.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- CONTACT -->
+<!-- Contact Section (Orange, Black Text) -->
 <section id="contact">
     <div class="container">
-        <h2 class="section-title text-center mb-4" style="color:#111;" data-aos="fade-up">Get in touch</h2>
+        <h2 class="section-title text-center mb-5">Get in Touch</h2>
         <div class="row g-4 justify-content-center">
-            <div class="col-md-5" data-aos="fade-right">
+            <div class="col-md-5">
                 <div class="contact-info">
-                    <h5>Contact</h5>
-                    <p style="margin-bottom:10px;">Email: <strong>pickevery.official@gmail.com</strong></p>
-                    <p style="margin-bottom:8px;"><strong>Follow us</strong></p>
-                    <a href="https://www.instagram.com/pickevery.official/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/pickevery" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <h5 class="mb-4">Contact Information</h5>
+                    <div class="contact-item mb-3">
+                        <i class="fas fa-envelope me-3"></i>
+                        <span>pickevery.official@gmail.com</span>
+                    </div>
+                    <div class="social-links mt-4">
+                        <h6 class="mb-3">Follow Us</h6>
+                        <a href="https://www.instagram.com/pickevery.official/" class="social-link me-3">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/pickevery" class="social-link me-3">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-7" data-aos="fade-left">
-                <form class="contact-form" id="contactForm">
+            <div class="col-md-7">
+                <form class="contact-form">
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input class="form-control" id="name" required>
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                     </div>
-                    <button class="btn btn-orange" type="submit"><i class="fas fa-paper-plane me-2"></i>Send Message</button>
+                    <button type="submit" class="btn btn-orange px-4 py-2">
+                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-dark text-white">
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
     <div class="container">
-        <div class="row align-items-center py-3">
-            <div class="col-md-6 d-flex align-items-center gap-2">
-                <img src="{{ url_for('static', filename='images/pickevery-logo.png') }}" alt="Pickevery" style="height:28px;">
-                <small>© <span id="year"></span> Pickevery. All rights reserved.</small>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="d-flex align-items-center">
+                    <svg width="30" height="30" viewBox="0 0 100 100">
+                        <polygon points="20,70 50,20 80,70 50,60" fill="#FF8C00" stroke="#FFF" stroke-width="2"/>
+                        <circle cx="80" cy="25" r="15" fill="#FF8C00"/>
+                    </svg>
+                    <span class="ms-2">&copy; 2025 Pickevery. All rights reserved.</span>
+                </div>
             </div>
             <div class="col-md-6 text-md-end">
-                <small>Where Travel Meets Purpose</small>
+                <span class="text-muted">Where Travel Meets Purpose</span>
             </div>
         </div>
     </div>
 </footer>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- AOS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+<footer class="footer">
+    <div class="container text-center">
+        <p>&copy; <span id="year"></span> Pickevery. All rights reserved.</p>
+        <nav class="footer-nav">
+            <a href="{{ url_for('privacy') }}">Privacy Policy</a> |
+            <a href="{{ url_for('terms') }}">Terms & Conditions</a> |
+            <a href="{{ url_for('refund') }}">Refund & Cancellation Policy</a>
+        </nav>
+    </div>
+</footer>
 <script>
-    // init AOS with slightly stronger motion for dynamic feel
-    AOS.init({
-        duration: 700,
-        easing: 'ease-out-quart',
-        once: true,
-        offset: 110
-    });
-
-    // Year in footer
-    document.addEventListener('DOMContentLoaded', function(){
-        document.getElementById('year').textContent = new Date().getFullYear();
-    });
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a.nav-link[href^="#"]').forEach(function(link){
-        link.addEventListener('click', function(e){
-            e.preventDefault();
-            var target = document.querySelector(this.getAttribute('href'));
-            if(target) {
-                window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
-            }
-        });
-    });
-
-    // Lightweight contact form handler (keeps behavior from your previous main.js)
-    document.getElementById('contactForm')?.addEventListener('submit', function(e){
-        e.preventDefault();
-        // show a basic success - you can integrate your fetch logic here (Airtable/API)
-        alert('Thank you — message received! We will get back shortly.');
-        this.reset();
-    });
-
-    // Small enhancement: subtle parallax on hero image (if screen > tablet)
-    window.addEventListener('scroll', function(){
-        var hero = document.querySelector('.hero-section');
-        if(!hero) return;
-        var scrolled = window.pageYOffset;
-        if(window.innerWidth > 900){
-            hero.style.transform = 'translateY(' + (scrolled * -0.03) + 'px)';
-        } else { hero.style.transform = 'none'; }
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-
-<!-- Load your existing main.js after modifications (if required) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
-
-
